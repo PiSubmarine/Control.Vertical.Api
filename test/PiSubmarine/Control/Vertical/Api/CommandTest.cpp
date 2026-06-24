@@ -26,7 +26,8 @@ namespace PiSubmarine::Control::Vertical::Api
 
     TEST(CommandTest, SetBallastPositionStoresPosition)
     {
-        const auto command = Command::SetBallastPositionTo(NormalizedFraction(0.75));
+        const auto command = Command::SetBallastPositionTo(
+            ::PiSubmarine::Ballast::BallastFillFraction{NormalizedFraction{0.75}});
         const auto* ballastPosition = command.TryGet<Command::SetBallastPosition>();
 
         ASSERT_NE(ballastPosition, nullptr);

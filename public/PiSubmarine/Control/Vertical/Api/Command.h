@@ -2,8 +2,8 @@
 
 #include <variant>
 
+#include "PiSubmarine/Ballast/BallastFillFraction.h"
 #include "PiSubmarine/Meters.h"
-#include "PiSubmarine/NormalizedFraction.h"
 
 namespace PiSubmarine::Control::Vertical::Api
 {
@@ -27,7 +27,7 @@ namespace PiSubmarine::Control::Vertical::Api
 
         struct SetBallastPosition
         {
-            NormalizedFraction Position;
+            ::PiSubmarine::Ballast::BallastFillFraction Position;
 
             [[nodiscard]] constexpr bool operator==(const SetBallastPosition&) const = default;
         };
@@ -44,7 +44,8 @@ namespace PiSubmarine::Control::Vertical::Api
             return Command(SetDepthTarget{depth});
         }
 
-        [[nodiscard]] static constexpr Command SetBallastPositionTo(const NormalizedFraction position) noexcept
+        [[nodiscard]] static constexpr Command SetBallastPositionTo(
+            const ::PiSubmarine::Ballast::BallastFillFraction position) noexcept
         {
             return Command(SetBallastPosition{position});
         }
